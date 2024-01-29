@@ -1,4 +1,4 @@
-﻿namespace IntegrationTests.Endpoints;
+﻿namespace IntegrationTests.Endpoints.Listings;
 
 public class ListListingsTests : IClassFixture<RealEstatePortalApiFactory>
 {

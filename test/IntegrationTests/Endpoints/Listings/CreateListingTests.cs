@@ -3,7 +3,7 @@ using System.Text;
 using System.Text.Json;
 using FluentAssertions;
 
-namespace IntegrationTests.Endpoints;
+namespace IntegrationTests.Endpoints.Listings;
 
 public class CreateListingTests : IClassFixture<RealEstatePortalApiFactory>
 {
