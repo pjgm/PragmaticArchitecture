@@ -25,8 +25,8 @@ public static class Listings
 
     private static async Task<IResult> Create(CreateListing.Command command, CreateListing createListing, CancellationToken ct)
     {
-        var listing = await createListing.Handle(command, ct);
-        return Results.Created($"/listing/{listing.Id}", listing);
+        var listingId = await createListing.Handle(command, ct);
+        return Results.Created($"/listing/{listingId}", listingId);
     }
 
     private static async Task<IEnumerable<Listing>> List(GetAllListings getAllListings, CancellationToken ct) =>

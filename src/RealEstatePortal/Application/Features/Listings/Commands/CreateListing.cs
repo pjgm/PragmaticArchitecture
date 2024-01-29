@@ -1,4 +1,5 @@
-﻿using RealEstatePortal.Domain;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstatePortal.Domain;
 using RealEstatePortal.Infrastructure;
 
 namespace RealEstatePortal.Application.Features.Listings.Commands;
@@ -12,13 +13,31 @@ public class CreateListing
         _dbContext = dbContext;
     }
 
-    public async Task<Listing> Handle(Command command, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(Command command, CancellationToken ct)
     {
-        var listing = new Listing(Guid.NewGuid(), command.Title, command.Description, command.Price);
-        _dbContext.Listings.Add(listing);
-        await _dbContext.SaveChangesAsync(cancellationToken);
-        return listing;
+        Property property;
+
+        if (command.PropertyId.HasValue)
+        {
+            property = await _dbContext.Properties.FirstAsync(p => p.Id == command.PropertyId, ct);
+        }
+        else
+        {
+            if (command.Property is null)
+            {
+                throw new ArgumentNullException(nameof(command.Property));
+            }
+            property = new Property(command.Property.Rooms, command.Property.Area, command.Property.Floors);
+        }
+
+
+        var listing = new Listing(command.Title, command.Description, command.Price, property);
+
+        await _dbContext.Listings.AddAsync(listing, ct);
+        await _dbContext.SaveChangesAsync(ct);
+        return listing.Id;
     }
 
-    public record Command(string Title, string Description, decimal Price);
+    public record Command(string Title, string Description, decimal Price, Guid? PropertyId, PropertyDto? Property);
+    public record PropertyDto(decimal Area, int Rooms, int Floors);
 }

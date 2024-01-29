@@ -12,5 +12,6 @@ public class RealEstateDbContext : DbContext
         base.OnConfiguring(builder);
     }
 
-    public DbSet<Listing> Listings { get; set; }
+    public required DbSet<Listing> Listings { get; set; }
+    public required DbSet<Property> Properties { get; set; }
 }

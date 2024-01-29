@@ -12,7 +12,7 @@ using RealEstatePortal.Infrastructure;
 namespace RealEstatePortal.Infrastructure.Migrations
 {
     [DbContext(typeof(RealEstateDbContext))]
-    [Migration("20240129084108_Initial")]
+    [Migration("20240129180452_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -38,13 +38,54 @@ namespace RealEstatePortal.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
+                    b.Property<Guid>("PropertyId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PropertyId");
+
                     b.ToTable("Listings");
+                });
+
+            modelBuilder.Entity("RealEstatePortal.Domain.Property", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<decimal>("Area")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("Floors")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Rooms")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Properties");
+                });
+
+            modelBuilder.Entity("RealEstatePortal.Domain.Listing", b =>
+                {
+                    b.HasOne("RealEstatePortal.Domain.Property", "Property")
+                        .WithMany("Listings")
+                        .HasForeignKey("PropertyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Property");
+                });
+
+            modelBuilder.Entity("RealEstatePortal.Domain.Property", b =>
+                {
+                    b.Navigation("Listings");
                 });
 #pragma warning restore 612, 618
         }
