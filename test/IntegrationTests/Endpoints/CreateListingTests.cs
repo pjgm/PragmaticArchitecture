@@ -21,7 +21,13 @@ public class CreateListingTests : IClassFixture<RealEstatePortalApiFactory>
         {
             title = "Test Listing",
             description = "Test Description",
-            price = 1.1
+            price = 1.1,
+            property = new
+            {
+                rooms = 3,
+                area = 100.12,
+                floors = 1
+            }
         };
 
         var json = JsonSerializer.Serialize(newListing);
