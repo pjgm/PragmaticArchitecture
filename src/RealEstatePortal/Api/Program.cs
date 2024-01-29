@@ -1,16 +1,22 @@
 ﻿using RealEstatePortal.Api.Extensions;
+using RealEstatePortal.Application.Extensions;
+using RealEstatePortal.Infrastructure.Extensions;
 
-namespace RealEstatePortal.Api;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
+builder.Services
+    .AddConfigurationOptions(builder.Configuration)
+    .AddInfrastructure(builder.Configuration)
+    .AddAllFeatures()
+    .AddSwagger();
 
-        app.MapAllEndpoints();
+var app = builder.Build();
 
-        app.Run();
-    }
-}
+app.MapAllEndpoints();
+app.UseSwaggerWithUi();
+
+await app.RunMigrations(app.Configuration);
+
+app.Run();
+
+public interface IApiMarker { }
