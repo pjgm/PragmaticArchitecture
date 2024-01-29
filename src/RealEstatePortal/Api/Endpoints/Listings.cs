@@ -6,7 +6,7 @@ namespace RealEstatePortal.Api.Endpoints;
 
 public static class Listings
 {
-    public static void MapListings(this IEndpointRouteBuilder endpoints)
+    public static IEndpointRouteBuilder MapListings(this IEndpointRouteBuilder endpoints)
     {
         endpoints
             .MapGet("/listings", List)
@@ -21,14 +21,21 @@ public static class Listings
             .WithName("CreateListing")
             .WithTags("Create")
             .WithOpenApi();
+
+        return endpoints;
     }
 
-    private static async Task<IResult> Create(CreateListing.Command command, CreateListing createListing, CancellationToken ct)
+    private static async Task<IResult> Create(
+        CreateListing.Command command,
+        CreateListing handler,
+        CancellationToken ct)
     {
-        var listingId = await createListing.Handle(command, ct);
+        var listingId = await handler.Handle(command, ct);
         return Results.Created($"/listing/{listingId}", listingId);
     }
 
-    private static async Task<IEnumerable<Listing>> List(GetAllListings getAllListings, CancellationToken ct) =>
-        await getAllListings.Handle(ct);
+    private static async Task<IEnumerable<Listing>> List(
+        ListListings handler,
+        CancellationToken ct) =>
+        await handler.Handle(ct);
 }

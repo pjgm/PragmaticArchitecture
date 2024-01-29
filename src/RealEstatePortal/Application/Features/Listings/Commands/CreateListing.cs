@@ -27,7 +27,7 @@ public class CreateListing
             {
                 throw new ArgumentNullException(nameof(command.Property));
             }
-            property = new Property(command.Property.Rooms, command.Property.Area, command.Property.Floors);
+            property = new Property(command.Property.Area, command.Property.Rooms, command.Property.Floors);
         }
 
 

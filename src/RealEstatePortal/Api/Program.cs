@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .AddConfigurationOptions(builder.Configuration)
     .AddInfrastructure(builder.Configuration)
-    .AddAllFeatures()
+    .AddApplicationFeatures()
     .AddSwagger();
 
 var app = builder.Build();
