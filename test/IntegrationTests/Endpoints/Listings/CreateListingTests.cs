@@ -17,17 +17,25 @@ public class CreateListingTests : IClassFixture<RealEstatePortalApiFactory>
     [Fact]
     public async Task CreateListing_WithValidListing_ShouldCreateListing()
     {
+        var newProperty = new
+        {
+            rooms = 3,
+            area = 100.12,
+            floors = 1
+        };
+
+        var newPropJson = JsonSerializer.Serialize(newProperty);
+
+        var response = await _httpClient.PostAsync("property", new StringContent(newPropJson, Encoding.UTF8, "application/json"));
+        var propertyId = (await response.Content.ReadAsStringAsync()).Trim('"');
+
+
         var newListing = new
         {
             title = "Test Listing",
             description = "Test Description",
             price = 1.1,
-            property = new
-            {
-                rooms = 3,
-                area = 100.12,
-                floors = 1
-            }
+            propertyId
         };
 
         var json = JsonSerializer.Serialize(newListing);

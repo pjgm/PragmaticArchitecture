@@ -17,7 +17,7 @@ public static class Properties
 
         endpoints
             .MapPost("/property", Create)
-            .Produces<Property>()
+            .Produces<string>()
             .WithName("CreateProperty")
             .WithTags("Create")
             .WithOpenApi();
