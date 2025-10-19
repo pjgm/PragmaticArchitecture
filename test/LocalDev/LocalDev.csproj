@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\src\RealEstatePortal\appsettings.Development.json">
+        <Link>appsettings.Development.json</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.10" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.10" />
+      <PackageReference Include="Testcontainers.PostgreSql" Version="4.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Include="..\..\src\RealEstatePortal\Application\Configuration\DatabaseOptions.cs">
+        <Link>DatabaseOptions.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+</Project>

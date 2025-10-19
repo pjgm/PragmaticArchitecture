@@ -8,6 +8,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D01329B9-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "test\IntegrationTests\IntegrationTests.csproj", "{68975374-5809-4FD6-99FF-6A39C29B95F7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "http", "http", "{FC1DFB63-2AC6-4149-9880-B4BB1882CF19}"
+	ProjectSection(SolutionItems) = preProject
+		test\http\real-estate-portal-api.http = test\http\real-estate-portal-api.http
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalDev", "test\LocalDev\LocalDev.csproj", "{68FA279F-1B32-44D4-862F-9E100C78C2FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,6 +23,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4DEA969A-7232-4FED-AB6E-78A4DA2A6EA2} = {3AF52F38-E194-4DFE-BD19-97A151A641D9}
 		{68975374-5809-4FD6-99FF-6A39C29B95F7} = {D01329B9-C66C-4BD8-824E-A834FBDEEC03}
+		{FC1DFB63-2AC6-4149-9880-B4BB1882CF19} = {D01329B9-C66C-4BD8-824E-A834FBDEEC03}
+		{68FA279F-1B32-44D4-862F-9E100C78C2FE} = {D01329B9-C66C-4BD8-824E-A834FBDEEC03}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4DEA969A-7232-4FED-AB6E-78A4DA2A6EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -26,5 +35,9 @@ Global
 		{68975374-5809-4FD6-99FF-6A39C29B95F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68975374-5809-4FD6-99FF-6A39C29B95F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68975374-5809-4FD6-99FF-6A39C29B95F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68FA279F-1B32-44D4-862F-9E100C78C2FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68FA279F-1B32-44D4-862F-9E100C78C2FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68FA279F-1B32-44D4-862F-9E100C78C2FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68FA279F-1B32-44D4-862F-9E100C78C2FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

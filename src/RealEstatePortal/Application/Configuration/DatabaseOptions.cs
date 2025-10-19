@@ -1,6 +1,4 @@
-﻿using Npgsql;
-
-namespace RealEstatePortal.Application.Configuration;
+﻿namespace RealEstatePortal.Application.Configuration;
 
 public class DatabaseOptions
 {
@@ -14,18 +12,4 @@ public class DatabaseOptions
     public string SslMode { get; set; } = string.Empty;
 
     public bool RunMigrations { get; set; } = false;
-
-    public string GetConnectionString()
-    {
-        var sslMode = Enum.Parse<SslMode>(SslMode, ignoreCase: true);
-        return new NpgsqlConnectionStringBuilder
-        {
-            Host = Host,
-            Database = DatabaseName,
-            Port = Convert.ToInt32(Port),
-            Username = Username,
-            Password = Password,
-            SslMode = sslMode
-        }.ToString();
-    }
 }

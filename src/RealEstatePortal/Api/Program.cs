@@ -19,4 +19,4 @@ await app.RunMigrations(app.Configuration);
 
 app.Run();
 
-public interface IApiMarker { }
+public interface IApiMarker;
