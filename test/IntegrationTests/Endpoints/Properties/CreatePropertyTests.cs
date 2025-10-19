@@ -5,14 +5,9 @@ using FluentAssertions;
 
 namespace IntegrationTests.Endpoints.Properties;
 
-public class CreatePropertyTests : IClassFixture<RealEstatePortalApiFactory>
+public class CreatePropertyTests(RealEstatePortalApiFactory apiFactory) : IClassFixture<RealEstatePortalApiFactory>
 {
-    private readonly HttpClient _httpClient;
-
-    public CreatePropertyTests(RealEstatePortalApiFactory apiFactory)
-    {
-        _httpClient = apiFactory.CreateClient();
-    }
+    private readonly HttpClient _httpClient = apiFactory.CreateClient();
 
     [Fact]
     public async Task CreateProperty_WithValidInput_ShouldCreateProperty()

@@ -1,19 +1,11 @@
 ﻿namespace RealEstatePortal.Domain;
 
-public class Property
+public class Property(decimal area, int rooms, int floors)
 {
-    public Property(decimal area, int rooms, int floors)
-    {
-        Id = Guid.NewGuid();
-        Area = area;
-        Rooms = rooms;
-        Floors = floors;
-    }
-
-    public Guid Id { get; private set; }
-    public decimal Area { get; private set; }
-    public int Rooms { get; private set; }
-    public int Floors { get; private set; }
+    public Guid Id { get; private set; } = Guid.NewGuid();
+    public decimal Area { get; private set; } = area;
+    public int Rooms { get; private set; } = rooms;
+    public int Floors { get; private set; } = floors;
 
     public IEnumerable<Listing> Listings { get; } = new List<Listing>();
 }

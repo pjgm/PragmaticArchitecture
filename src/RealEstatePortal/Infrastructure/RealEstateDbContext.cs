@@ -3,10 +3,8 @@ using RealEstatePortal.Domain;
 
 namespace RealEstatePortal.Infrastructure;
 
-public class RealEstateDbContext : DbContext
+public class RealEstateDbContext(DbContextOptions<RealEstateDbContext> options) : DbContext(options)
 {
-    public RealEstateDbContext(DbContextOptions<RealEstateDbContext> options) : base(options) { }
-
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         base.OnConfiguring(builder);

@@ -4,22 +4,15 @@ using RealEstatePortal.Infrastructure;
 
 namespace RealEstatePortal.Application.Features.Listings.Commands;
 
-public class CreateListing
+public class CreateListing(RealEstateDbContext dbContext)
 {
-    private readonly RealEstateDbContext _dbContext;
-
-    public CreateListing(RealEstateDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public async Task<Guid> Handle(Command command, CancellationToken ct)
     {
-        var property = await _dbContext.Properties.FirstAsync(p => p.Id == command.PropertyId, ct);
+        var property = await dbContext.Properties.FirstAsync(p => p.Id == command.PropertyId, ct);
         var listing = new Listing(command.Title, command.Description, command.Price, property);
 
-        await _dbContext.Listings.AddAsync(listing, ct);
-        await _dbContext.SaveChangesAsync(ct);
+        await dbContext.Listings.AddAsync(listing, ct);
+        await dbContext.SaveChangesAsync(ct);
         return listing.Id;
     }
 

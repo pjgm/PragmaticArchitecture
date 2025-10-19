@@ -5,14 +5,9 @@ using FluentAssertions;
 
 namespace IntegrationTests.Endpoints.Listings;
 
-public class CreateListingTests : IClassFixture<RealEstatePortalApiFactory>
+public class CreateListingTests(RealEstatePortalApiFactory apiFactory) : IClassFixture<RealEstatePortalApiFactory>
 {
-    private readonly HttpClient _httpClient;
-
-    public CreateListingTests(RealEstatePortalApiFactory apiFactory)
-    {
-        _httpClient = apiFactory.CreateClient();
-    }
+    private readonly HttpClient _httpClient = apiFactory.CreateClient();
 
     [Fact]
     public async Task CreateListing_WithValidListing_ShouldCreateListing()

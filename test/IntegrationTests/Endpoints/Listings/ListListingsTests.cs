@@ -1,13 +1,8 @@
 ﻿namespace IntegrationTests.Endpoints.Listings;
 
-public class ListListingsTests : IClassFixture<RealEstatePortalApiFactory>
+public class ListListingsTests(RealEstatePortalApiFactory apiFactory) : IClassFixture<RealEstatePortalApiFactory>
 {
-    private readonly HttpClient _httpClient;
-
-    public ListListingsTests(RealEstatePortalApiFactory apiFactory)
-    {
-        _httpClient = apiFactory.CreateClient();
-    }
+    private readonly HttpClient _httpClient = apiFactory.CreateClient();
 
     [Fact]
     public async Task ListListings_WithEmptyDatabase_ShouldReturnSuccessStatusCode()
